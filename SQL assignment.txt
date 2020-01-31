@@ -1,0 +1,102 @@
+SQL Bigquery assignment
+
+
+1)What is the average duration of bicycle rides in London?
+Command:-
+SELECT avg(duration)
+FROM `bigquery-public-data.london_bicycles.cycle_hire` LIMIT 100
+Result: 1332.2942
+
+2)How do we arrange the bicycles in descending order using rental id?
+Command:-
+SELECT rental_id
+FROM `bigquery-public-data.london_bicycles.cycle_hire` 
+ORDER BY rental_id DESC
+Result:-
+Row	rental_id 	
+1	66065056	
+2	66065055	
+3	66065054	
+4	66065053	
+5	66065052	
+
+3)What is the maximum duration of bicycle rides given a condition that it is greater than 500?
+Command:-
+SELECT MAX(duration)
+FROM `bigquery-public-data.london_bicycles.cycle_hire` 
+WHERE duration>500
+Result: 2674020 secs
+
+4)Count the total number of observations taking year as the variable for London crime data
+Command:-
+SELECT COUNT(year)
+FROM `bigquery-public-data.london_crime.crime_by_lsoa`
+Result: 13490604
+
+5)The Minimum time taken for the second pump to arrive 
+Command:-
+SELECT MIN(second_pump_arriving_attendance_time)
+FROM `bigquery-public-data.london_fire_brigade.fire_brigade_service_calls`
+Result: 4 mins 
+
+6)What is the total number of crimes in a month in London?
+Command:-
+SELECT SUM(value)
+FROM `bigquery-public-data.london_crime.crime_by_lsoa`
+Result: 6447758
+
+7)Count the rental id for bicycle ride durations between 16000 secs and 18000 secs 
+Command:-
+SELECT COUNT(rental_id)
+FROM `bigquery-public-data.london_bicycles.cycle_hire` 
+WHERE duration BETWEEN 16000 AND 18000
+Result: 11433
+
+8)Inner Join the ‘station name’ and ‘number of bike rides available’ in San Francisco with station id as the common variable (used for joining)
+Command:-
+ SELECT `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`.name,`bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status`.num_bikes_available 
+FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info` 
+INNER JOIN `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status` 
+ON `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`.station_id = `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status`.station_id
+Result:-
+Row     station name                                        number of bikes available
+1	Otis St at Brady St	                                    8	
+2	Green St at Van Ness St	                                    0	
+3	Alemany Blvd at Silver Ave	                            0	
+4	Balboa Park (San Jose Ave at Sgt. John V. Young Ln	    0	
+5	Delano Ave at Oneida Ave	                            0	
+6	London St at Geneva Ave	                                    0	
+7	Onondaga Ave at Alemany Blvd	                            0	
+8	Geneva Ave at Moscow St	                                    0	
+9	Park Ave at Laurel Grove Ln	                            7	
+10	St James St at 9th St	                                    11	
+
+
+9)Right Join the ‘station name’ and ‘number of bike rides available’ in San Francisco with station id as the common variable (used for joining)
+Command:-
+SELECT `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`.name,`bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status`.num_bikes_available 
+FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info` 
+LEFT JOIN `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status` 
+ON `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`.station_id = `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status`.station_id
+Result:-
+Row     Station name                    number of bikes available
+22	El Embarcadero at Grand Ave	     22
+	
+
+10)Right Join the ‘station name’ and ‘number of bike rides available’ in San Francisco with station id as the common variable (used for joining)
+Command:-
+SELECT `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`.name,`bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status`.num_bikes_available 
+FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info` 
+RIGHT JOIN `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status` 
+ON `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`.station_id = `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status`.station_id
+Result:-
+Row     station name                   number of bikes available 
+22	Victoria Manalo Draves Park	    10
+
+
+
+
+
+
+
+
